@@ -1,0 +1,9 @@
+Email,Password
+invalidemail@xyz.com,Password1
+vardenio@gmail.com,WrongPass123
+testboundary@gmail.com,Pass1
+testboundary@gmail.com,Pass12
+testboundary@gmail.com,Pass123
+testboundary@gmail.com,Pass12345678901234567890
+testboundary@gmail.com,Pass123456789012345678901
+testboundary@gmail.com,Pass1234567890123456789012
