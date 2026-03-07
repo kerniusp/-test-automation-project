@@ -1,0 +1,5 @@
+firstName, lastName, postalCode,error
+"","","",Error: First Name is required
+Tomas,"","",Error: Last Name is required
+Tomas,Tomauskas,"",Error: Postal Code is required
+Tomas,Tomauskas,1,Error: Incorrect Postal Code format

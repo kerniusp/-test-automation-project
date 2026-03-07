@@ -1,5 +1,6 @@
 package org.example;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,18 +11,29 @@ public class MainPage extends BasePage{
         super(driver);
     }
 
+    @FindBy(id="shopping_cart_container")
+    WebElement divShoppingCart;
 
-    @FindBy(css = ".header.panel > .header.links > li:nth-of-type(3) > a")
-    WebElement hrefCreateAnAccount;
+    By spanShoppingCart = By.cssSelector("[data-test='shopping-cart-badge']");
 
-    @FindBy(css = ".header.panel > .header.links > .authorization-link > a")
-    WebElement hrefSignIn;
-
-    public void clickCreateAnAccount(){
-        hrefCreateAnAccount.click();
+    public void addItemToCart(String itemName){
+        driver.findElement(By.cssSelector("[data-test='add-to-cart-" + itemName + "']")).click();
     }
 
-    public void clickSignIn(){
-        hrefSignIn.click();
+    public void removeItemFromCart(String itemName){
+        driver.findElement(By.cssSelector("[data-test='remove-" + itemName + "']")).click();
     }
+
+    public void pressShoppingCart(){
+        divShoppingCart.click();
+    }
+
+    public int getShoppingCartsCount(){
+        return Integer.parseInt(driver.findElement(spanShoppingCart).getText().trim());
+    }
+
+    public boolean isShoppingCartCountDisplayed(){
+        return !driver.findElements(spanShoppingCart).isEmpty();
+    }
+
 }
