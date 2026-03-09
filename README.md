@@ -1,6 +1,7 @@
 # Test Automation Project  
 
 Introduction
+
 This repository contains a UI test automation project built with Selenium WebDriver, JUnit, and Java.
 The goal of this project is to demonstrate automated UI testing, structured test design, and automated reporting.
 
