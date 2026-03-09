@@ -6,11 +6,18 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.io.FileHandler;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,5 +62,24 @@ public class BaseTest {
         driver.close();
     }
 
+
+    protected String takeScreenshot(String testName) {
+        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
+        String dirPath = "test-output/screenshots";
+        File dir = new File(dirPath);
+        if (!dir.exists()) dir.mkdirs();
+
+        String filePath = dirPath + "/" + testName + "_" + timestamp + ".png";
+        File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        File destFile = new File(filePath);
+
+        try {
+            FileHandler.copy(srcFile, destFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return destFile.getAbsolutePath();
+    }
 }
 

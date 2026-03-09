@@ -69,7 +69,12 @@ public class CheckoutTest extends BaseTest {
             assertTrue(checkoutPage.isErrorMessageDisplayed());
             test.pass("User got an error message regarding incorrect information");
         }catch(AssertionError e){
-            test.fail("User was not provided with an error message");
+
+            String screenshotPath = takeScreenshot("CheckoutWithIncorrectData");
+            test.fail("User was not provided with an error message such as:" + error)
+                    .addScreenCaptureFromPath(screenshotPath);
+
+
             throw e;
         }
 
