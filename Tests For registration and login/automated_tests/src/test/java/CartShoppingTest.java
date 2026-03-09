@@ -67,17 +67,15 @@ public class CartShoppingTest extends BaseTest {
     @Test
     public void multipleItemsInCart(){
 
-        mainPage.addItemToCart(items[0]);
-        mainPage.addItemToCart(items[1]);
-        mainPage.addItemToCart(items[2]);
+        for(int i = 0; i < 3; i++){
+            mainPage.addItemToCart(items[i]);
+        }
         assertEquals(3,mainPage.getShoppingCartsCount(),
                 "Shopping cart should have three items");
 
         mainPage.pressShoppingCart();
 
-
         List<String> inventory = cartPage.inventoryNames();
-
         for(String expectedItems : items){
 
             boolean itemExist = false;

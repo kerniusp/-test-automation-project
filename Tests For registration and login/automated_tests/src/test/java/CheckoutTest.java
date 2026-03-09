@@ -54,7 +54,6 @@ public class CheckoutTest extends BaseTest {
     public void priceTotalCountTest(){
 
         checkoutFlow("Tomas","Tomauskas","LT-1234");
-
         assertEquals(39.98,checkoutPage.totalPriceSum(),"Total price is incorrect");
     }
 
