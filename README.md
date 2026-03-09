@@ -45,5 +45,6 @@ How to Run Tests
 - Install dependencies using Maven
 - Run the tests
 - mvn test
+
 After execution, open the generated ExtentReport.html to view the test results.
 
