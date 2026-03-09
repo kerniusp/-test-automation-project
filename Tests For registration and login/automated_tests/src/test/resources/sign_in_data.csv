@@ -1,4 +1,5 @@
 username,password,errorMessage
 "","",Epic sadface: Username is required
-test,"",Epic sadface: Password is required
-test,test,Epic sadface: Username and password do not match any user in this service
+standard_user,"",Epic sadface: Epic sadface: Password is required
+standard_user,"randomPass",Epic sadface: Username and password do not match any user in this service
+randomUsername,secret_sauce,Epic sadface: Username and password do not match any user in this service
