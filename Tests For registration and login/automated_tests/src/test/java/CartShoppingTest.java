@@ -31,6 +31,20 @@ public class CartShoppingTest extends BaseTest {
     }
 
 
+    @Test
+    public void filterByPriceTest(){
+        
+        List<Double>sortedFromLowToHigh = mainPage.allItemPrices().stream()
+                .sorted()
+                .toList();
+
+        mainPage.clickOnFilter();
+        mainPage.clickFromLowToHighOption();
+
+        assertEquals(sortedFromLowToHigh,mainPage.allItemPrices(),"Prices are not sorted from low to high");
+
+
+    }
 
     @Test
     public void addingItemToCart(){

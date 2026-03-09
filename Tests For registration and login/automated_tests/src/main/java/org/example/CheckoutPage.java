@@ -23,6 +23,14 @@ public class CheckoutPage extends BasePage{
     @FindBy(id="continue")
     WebElement inputSubmit;
 
+    @FindBy(id="finish")
+    WebElement buttonFinish;
+
+    @FindBy(css="[data-test='subtotal-label']")
+    WebElement divPriceTotal;
+
+    By divOrderComplete = By.cssSelector("[data-test='complete-text']");
+
     By buttonErrorMessage = By.cssSelector("[data-test='error']");
 
     public void enterInformationCredentials(String firstName, String lastName, String postalCode){
@@ -36,11 +44,24 @@ public class CheckoutPage extends BasePage{
         inputSubmit.click();
     }
 
+    public void clickFinish() { buttonFinish.click();}
+
     public boolean isErrorMessageDisplayed(){
         return !driver.findElements(buttonErrorMessage).isEmpty();
     }
 
+    public boolean isOrderCompletedMessageDisplayed(){
+        return !driver.findElements(divOrderComplete).isEmpty();
+    }
+
     public String errorMessage(){
         return driver.findElement(buttonErrorMessage).getText();
+    }
+
+    public double totalPriceSum(){
+        String text = divPriceTotal.getText().replace("Item total:","")
+                .replace("$", "")
+                .trim();
+        return Double.parseDouble(text);
     }
 }

@@ -24,10 +24,41 @@ public class CheckoutTest extends BaseTest {
         loginPage.loginIntoWebsite("standard_user","secret_sauce");
     }
 
+
+    @Test
+    public void checkoutTest(){
+
+        checkoutFlow("Tomas","Tomauskas","LT-1234");
+        checkoutPage.clickFinish();
+
+        assertEquals("https://www.saucedemo.com/checkout-complete.html",driver.getCurrentUrl(),
+                "User was not redirected to the checkout complete page");
+
+        assertTrue(checkoutPage.isOrderCompletedMessageDisplayed());
+    }
+
     @ParameterizedTest
     @CsvFileSource(resources = "/checkout_data.csv",numLinesToSkip = 1)
-    public void checkoutWithIncorrectDataFormat(String firstName, String lastName,
-                                                String postalCode,String error){
+    public void checkoutWithIncorrectData(String firstName,String lastName,String postalCode,String error){
+
+        checkoutFlow(firstName,lastName,postalCode);
+
+        assertTrue(checkoutPage.isErrorMessageDisplayed(),
+                "Error is not displayed for entering incorrect data");
+        assertEquals(error,checkoutPage.errorMessage(),
+                "Error message do not match to the incorrect data input");
+    }
+
+
+    @Test
+    public void priceTotalCountTest(){
+
+        checkoutFlow("Tomas","Tomauskas","LT-1234");
+
+        assertEquals(39.98,checkoutPage.totalPriceSum(),"Total price is incorrect");
+    }
+
+    public void checkoutFlow(String firstName, String lastName, String postalCode){
 
         mainPage.addItemToCart("sauce-labs-backpack");
         mainPage.addItemToCart("sauce-labs-bike-light");
@@ -38,10 +69,5 @@ public class CheckoutTest extends BaseTest {
         checkoutPage.enterInformationCredentials(firstName,lastName,postalCode);
         checkoutPage.clickSubmit();
 
-        assertTrue(checkoutPage.isErrorMessageDisplayed(),
-                "Error is not displayed for entering incorrect data");
-        assertEquals(error,checkoutPage.errorMessage(),
-                "Error message do not match the incorrect data input");
     }
-
 }

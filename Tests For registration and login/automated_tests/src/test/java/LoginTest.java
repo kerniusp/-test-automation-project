@@ -20,7 +20,7 @@ public class LoginTest extends BaseTest{
     }
 
     @Test
-    public void lockedOutUser(){
+    public void lockedOutUserLogin(){
 
         LoginPage loginPage = new LoginPage(driver);
 
