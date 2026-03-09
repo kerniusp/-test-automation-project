@@ -6,6 +6,7 @@ This repository contains a UI test automation project built with Selenium WebDri
 The goal of this project is to demonstrate automated UI testing, structured test design, and automated reporting.
 
 Objectives
+
 The objectives of automation testing for the Swag Labs are as follows:
 - Demonstrate automated UI testing using Selenium WebDriver
 - Apply test design techniques such as equivalence partitioning and boundary value analysis
