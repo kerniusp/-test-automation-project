@@ -53,6 +53,12 @@
             <version>1.19.8</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>5.0.9</version> <!-- latest 5.x version -->
+        </dependency>
     </dependencies>
 
 </project>

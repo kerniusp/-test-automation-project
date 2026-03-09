@@ -1,4 +1,10 @@
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,7 +16,22 @@ import java.util.Map;
 
 public class BaseTest {
 
-    WebDriver driver;
+    protected static ExtentReports extent;
+    protected ExtentTest test;
+    protected WebDriver driver;
+
+    @BeforeAll
+    public static void setupReport() {
+        extent = ExtentManager.getExtent();
+    }
+
+    @AfterAll
+    public static void tearDownReport() {
+        if (extent != null) {
+            extent.flush();
+        }
+    }
+
 
     @BeforeEach
     void startup(){
